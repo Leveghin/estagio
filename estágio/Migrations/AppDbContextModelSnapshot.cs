@@ -19,11 +19,10 @@ namespace estágio.Migrations
             modelBuilder.Entity("estágio.Data.entidades", b =>
                 {
                     b.Property<string>("nome")
-                        .HasMaxLength(30)
-                        .HasColumnType("varchar(30)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("data")
-                        .HasPrecision(10, 2)
+                        .HasPrecision(8)
                         .HasColumnType("longtext");
 
                     b.Property<string>("status")
@@ -49,7 +48,7 @@ namespace estágio.Migrations
                         new
                         {
                             nome = "Montar computador",
-                            data = "02/04/2002",
+                            data = "2/04/2002",
                             status = "Em processo"
                         });
                 });

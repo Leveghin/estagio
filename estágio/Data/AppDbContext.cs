@@ -24,9 +24,9 @@ namespace estágio.Data
 
                     .HasData(
 
-                new entidades { nome = "Consertar carro", data = 01 / 04 / 2002, status = "concluido" },
-                new entidades { nome = "Cortar grama", data = 03 / 04 / 2002, status = "Em processo" },
-                new entidades { nome = "Montar computador", data = 02 / 04 / 2002, status = "Em processo" });
+                new entidades { nome = "Consertar carro", data = "01/04/2002", status = "concluido" },
+                new entidades { nome = "Cortar grama", data = "03/04/2002", status = "Em processo" },
+                new entidades { nome = "Montar computador", data = "2/04/2002", status = "Em processo" });
 
 
 

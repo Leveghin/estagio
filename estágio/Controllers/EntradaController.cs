@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 
 
+
 namespace estágio.Controllers
 {
     [Route("api/[controller]")]
@@ -24,7 +25,7 @@ namespace estágio.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<ActionResult<IEnumerable<entidades>>> Getentidade()
 
         {
@@ -32,57 +33,30 @@ namespace estágio.Controllers
             return await _context.entidade.ToListAsync();
 
         }
-        [HttpGet("{Nome}")]
-        public async Task<ActionResult<entidades>> Getentidade(string nome)
+        [HttpPost("{Serviço}")]
 
+        public async Task<ActionResult<entidades>> PostEntidades(entidades Entidades)
         {
+            _context.entidade.Add(Entidades);
+            await _context.SaveChangesAsync();
 
-            var entidade = await _context.entidade.FindAsync(nome);
-
-            if (entidade == null)
+            return CreatedAtAction("Getentidade", new { Nome = Entidades.nome }, Entidades);
+        }
+        [HttpDelete("{Deletar}")]
+        public async Task<IActionResult> Deleteentidades(string nome)
+        {
+            var Entidades = await _context.entidade.FindAsync(nome);
+            if (Entidades == null)
             {
                 return NotFound();
-
             }
-            return entidade;
 
-        }
+            _context.entidade.Remove(Entidades);
+            await _context.SaveChangesAsync();
 
-        [HttpGet("{Nome}")]
-        public async Task<IActionResult> PutEntidade(string nome, entidades entidade)
-
-        {
-
-
-            if (nome != entidade.nome)
-            {
-                return BadRequest();
-
-            }
-            _context.Entry(entidade).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!entidadesExists(nome))
-                {
-
-                    return NotFound();
-
-                }
-                else
-                {
-
-                    throw;
-
-                }
-
-            }
             return NoContent();
-
         }
     }
 }
+
+

@@ -9,7 +9,7 @@ namespace estágio.Data
 
     public string nome { get; set; }
 
-    public int data { get; set; }
+    public string data { get; set; }
 
     public string status { get; set; }   
     }
